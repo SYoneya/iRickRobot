@@ -1,4 +1,4 @@
-import aiogram, logging; from datetime import datetime, timedelta; from pytube import YouTube;
+import aiogram, logging; from datetime import datetime, timedelta;
 from aiogram import Bot, Dispatcher, types, executor;
 from config import *
 
@@ -6,25 +6,6 @@ logging.basicConfig(level=logging.INFO)
 
 bot = Bot(token=TOKEN, parse_mode='HTML')
 dp = Dispatcher(bot)
-
-
-
-"""
-@dp.message_handler(commands=['dl'], commands_prefix='/!.')
-async def dl(message: types.Message):
-   try:
-      args = message.get_args()
-      yt = YouTube(args)
-      dl = yt.streams.get_highest_resolution()
-   except IndexError:
-      await message.reply(f'''Ошибка!
-Пример ввода: <code>/dl ссылка</code>''')
-      return
-   await message.reply(f'''Скачивание...''')
-   dl.download(filename='video.mp4')
-   await message.reply('Отправление...')
-   await bot.send_video(message.chat.id, video=open('video.mp4', 'r'), charmap_decode='utf')
-"""
 
 
 
@@ -44,7 +25,7 @@ async def help_cmd(message: types.Message):
 /unmute - размут
 /unban - разбан
 /admins - список админов
-/ping - проверка отзывчивости''')
+/ping - пинг''')
 
 @dp.message_handler(lambda message: message.text.casefold() == 'помощь' or message.text.casefold() == 'help')
 async def help_cmd(message: types.Message):
@@ -56,31 +37,93 @@ async def help_cmd(message: types.Message):
 /unmute - размут
 /unban - разбан
 /admins - список админов
-/ping - проверка отзывчивости''')
+/ping - пинг''')
 
 @dp.message_handler(commands=['рп', 'rp'], commands_prefix='/!.')
 async def rp_cmd(message: types.Message):
-   await message.reply(f'''1. !обнять (реплика)
-2. !поцеловать (реплика)
-3. !отдаться (реплика)
-4. !трахнуть (реплика)
-5. !выебать (реплика)
-6. !сжечь (реплика)
-7. /me (реплика)
-8. /do (реплика)''')
+    await message.reply(f'''1. !выебать (реплика)
+2. !дать (реплика)
+3. !испугать (реплика)
+4. !кастрировать (реплика)
+5. !лизнуть (реплика)
+6. !обнять (реплика)
+7. !отдаться (реплика)
+8. !отлизать (реплика)
+9. !отравить (реплика)
+10. !отсосать (реплика)
+11. !покормить (реплика)
+12. !послать (реплика)
+13. !поцеловать (реплика)
+14. !прижать (реплика)
+15. !сжечь (реплика)
+16. !трахнуть (реплика)
+17. !убить (реплика)
+18. /do (реплика)
+19. /me (реплика)''')
 
 @dp.message_handler(lambda message: message.text.casefold() == 'рп' or message.text.casefold() == 'rp')
 async def rp_cmd(message: types.Message):
-   await message.reply(f'''1. !обнять (реплика)
-2. !поцеловать (реплика)
-3. !отдаться (реплика)
-4. !трахнуть (реплика)
-5. !выебать (реплика)
-6. !сжечь (реплика)
-7. /me (реплика)
-8. /do (реплика)''')
+    await message.reply(f'''1. !выебать (реплика)
+2. !дать (реплика)
+3. !испугать (реплика)
+4. !кастрировать (реплика)
+5. !лизнуть (реплика)
+6. !обнять (реплика)
+7. !отдаться (реплика)
+8. !отлизать (реплика)
+9. !отравить (реплика)
+10. !отсосать (реплика)
+11. !покормить (реплика)
+12. !послать (реплика)
+13. !поцеловать (реплика)
+14. !прижать (реплика)
+15. !сжечь (реплика)
+16. !трахнуть (реплика)
+17. !убить (реплика)
+18. /do (реплика)
+19. /me (реплика)''')
 
 
+    
+@dp.message_handler(commands=['выебать'], commands_prefix='!.')
+async def выебать(message: types.Message):
+   if not message.reply_to_message:
+      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      return
+   args = ' '.join(message.text.split()[1:])
+   await bot.send_message(message.chat.id, f'''👉👌😬 | {message.from_user.get_mention(as_html=True)} выебал(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
+
+@dp.message_handler(commands=['дать'], commands_prefix='!.')
+async def дать(message: types.Message):
+   if not message.reply_to_message:
+      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      return
+   args = ' '.join(message.text.split()[1:])
+   await bot.send_message(message.chat.id, f'''🙏🏻 | {message.from_user.get_mention(as_html=True)} дал(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
+
+@dp.message_handler(commands=['испугать'], commands_prefix='!.')
+async def испугать(message: types.Message):
+   if not message.reply_to_message:
+      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      return
+   args = ' '.join(message.text.split()[1:])
+   await bot.send_message(message.chat.id, f'''😱 | {message.from_user.get_mention(as_html=True)} испугал(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
+
+@dp.message_handler(commands=['кастрировать'], commands_prefix='!.')
+async def кастрировать(message: types.Message):
+   if not message.reply_to_message:
+      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      return
+   args = ' '.join(message.text.split()[1:])
+   await bot.send_message(message.chat.id, f'''✂️ | {message.from_user.get_mention(as_html=True)} кастрировал(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
+
+@dp.message_handler(commands=['лизнуть'], commands_prefix='!.')
+async def лизнуть(message: types.Message):
+   if not message.reply_to_message:
+      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      return
+   args = ' '.join(message.text.split()[1:])
+   await bot.send_message(message.chat.id, f'''👅 | {message.from_user.get_mention(as_html=True)} лизнул(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
 @dp.message_handler(commands=['обнять'], commands_prefix='!.')
 async def обнять(message: types.Message):
@@ -90,14 +133,6 @@ async def обнять(message: types.Message):
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''🤗 | {message.from_user.get_mention(as_html=True)} обнял(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['поцеловать'], commands_prefix='!.')
-async def поцеловать(message: types.Message):
-   if not message.reply_to_message:
-      await message.reply('Ошибка! Нужно в ответ на сообщение.')
-      return
-   args = ' '.join(message.text.split()[1:])
-   await bot.send_message(message.chat.id, f'''😘 | {message.from_user.get_mention(as_html=True)} поцеловал(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
-
 @dp.message_handler(commands=['отдаться'], commands_prefix='!.')
 async def отдаться(message: types.Message):
    if not message.reply_to_message:
@@ -106,21 +141,61 @@ async def отдаться(message: types.Message):
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''💝 | {message.from_user.get_mention(as_html=True)} отдался(-ась) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['трахнуть'], commands_prefix='!.')
-async def трахнуть(message: types.Message):
+@dp.message_handler(commands=['отлизать'], commands_prefix='!.')
+async def отлизать(message: types.Message):
    if not message.reply_to_message:
       await message.reply('Ошибка! Нужно в ответ на сообщение.')
       return
    args = ' '.join(message.text.split()[1:])
-   await bot.send_message(message.chat.id, f'''👉👌 | {message.from_user.get_mention(as_html=True)} трахнул(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
+   await bot.send_message(message.chat.id, f'''👅 | {message.from_user.get_mention(as_html=True)} отлизал(-а) у <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['выебать'], commands_prefix='!.')
-async def выебать(message: types.Message):
+@dp.message_handler(commands=['отравить'], commands_prefix='!.')
+async def отравить(message: types.Message):
    if not message.reply_to_message:
       await message.reply('Ошибка! Нужно в ответ на сообщение.')
       return
    args = ' '.join(message.text.split()[1:])
-   await bot.send_message(message.chat.id, f'''👉👌😬 | {message.from_user.get_mention(as_html=True)} выебал(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
+   await bot.send_message(message.chat.id, f'''💊 | {message.from_user.get_mention(as_html=True)} отравил(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
+
+@dp.message_handler(commands=['отсосать'], commands_prefix='!.')
+async def отсосать(message: types.Message):
+   if not message.reply_to_message:
+      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      return
+   args = ' '.join(message.text.split()[1:])
+   await bot.send_message(message.chat.id, f'''🥳 | {message.from_user.get_mention(as_html=True)} отсосал(-а) у <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
+
+@dp.message_handler(commands=['покормить'], commands_prefix='!.')
+async def покормить(message: types.Message):
+   if not message.reply_to_message:
+      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      return
+   args = ' '.join(message.text.split()[1:])
+   await bot.send_message(message.chat.id, f'''🍕 | {message.from_user.get_mention(as_html=True)} покормил(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
+
+@dp.message_handler(commands=['послать'], commands_prefix='!.')
+async def послать(message: types.Message):
+   if not message.reply_to_message:
+      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      return
+   args = ' '.join(message.text.split()[1:])
+   await bot.send_message(message.chat.id, f'''🖕 | {message.from_user.get_mention(as_html=True)} послал(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
+
+@dp.message_handler(commands=['поцеловать'], commands_prefix='!.')
+async def поцеловать(message: types.Message):
+   if not message.reply_to_message:
+      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      return
+   args = ' '.join(message.text.split()[1:])
+   await bot.send_message(message.chat.id, f'''😘 | {message.from_user.get_mention(as_html=True)} поцеловал(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
+
+@dp.message_handler(commands=['прижать'], commands_prefix='!.')
+async def прижать(message: types.Message):
+   if not message.reply_to_message:
+      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      return
+   args = ' '.join(message.text.split()[1:])
+   await bot.send_message(message.chat.id, f'''🤲 | {message.from_user.get_mention(as_html=True)} прижал(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
 @dp.message_handler(commands=['сжечь'], commands_prefix='!.')
 async def сжечь(message: types.Message):
@@ -130,14 +205,21 @@ async def сжечь(message: types.Message):
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''🔥 | {message.from_user.get_mention(as_html=True)} сжёг(-ожгла) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['me'], commands_prefix='/!.')
-async def me_cmd(message: types.Message):
-   args = message.get_args()
-   if not args:
-      await message.reply(f'''Ошибка!
-Пример ввода: <code>/me полил(-а) цветы</code>''')
+@dp.message_handler(commands=['трахнуть'], commands_prefix='!.')
+async def трахнуть(message: types.Message):
+   if not message.reply_to_message:
+      await message.reply('Ошибка! Нужно в ответ на сообщение.')
       return
-   await bot.send_message(message.chat.id, f'''<b>{message.from_user.full_name}</b> {args}.''')
+   args = ' '.join(message.text.split()[1:])
+   await bot.send_message(message.chat.id, f'''👉👌 | {message.from_user.get_mention(as_html=True)} трахнул(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
+
+@dp.message_handler(commands=['убить'], commands_prefix='!.')
+async def убить(message: types.Message):
+   if not message.reply_to_message:
+      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      return
+   args = ' '.join(message.text.split()[1:])
+   await bot.send_message(message.chat.id, f'''🤡🔪 | {message.from_user.get_mention(as_html=True)} убил(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
 @dp.message_handler(commands=['do'], commands_prefix='/!.')
 async def do_cmd(message: types.Message):
@@ -148,8 +230,17 @@ async def do_cmd(message: types.Message):
       return
    await bot.send_message(message.chat.id, f'''{args}. (<b>{message.from_user.full_name}</b>)''')
 
-
-
+@dp.message_handler(commands=['me'], commands_prefix='/!.')
+async def me_cmd(message: types.Message):
+   args = message.get_args()
+   if not args:
+      await message.reply(f'''Ошибка!
+Пример ввода: <code>/me полил(-а) цветы</code>''')
+      return
+   await bot.send_message(message.chat.id, f'''<b>{message.from_user.full_name}</b> {args}.''')
+   
+   
+   
 @dp.message_handler(commands=['мут', 'mute'], commands_prefix='/!.', is_chat_admin=True)
 async def mute_cmd(message: types.Message):
    if not message.reply_to_message:
@@ -243,8 +334,6 @@ async def unban_cmd(message: types.Message):
    except aiogram.utils.exceptions.UserIsAnAdministratorOfTheChat:
       await message.reply(f'''Ошибка!
 Нельзя дать разбан администратору.''')
-
-
 
 @dp.message_handler(commands=['админы', 'кто админ', 'admins'], commands_prefix='/!.')
 async def admins_cmd(message: types.Message):
