@@ -1,4 +1,4 @@
-import aiogram, logging; from datetime import datetime, timedelta;
+import aiogram, logging; from aiogram.filters import CommandObject; from datetime import datetime, timedelta;
 from aiogram import Bot, Dispatcher, types, executor;
 from config import *
 
