@@ -232,14 +232,14 @@ async def do_cmd(message: types.Message):
    await bot.send_message(message.chat.id, f'''{args}. (<b>{message.from_user.full_name}</b>)''')
 
 @dp.message_handler(commands=['me'], commands_prefix='/!.')
-async def me_cmd(message: types.Message):
-   args = message.get_args()
-   if not args:
+async def me_cmd(message: types.Message, command: CommandObject):
+   if not command.args:
       await message.reply(f'''Ошибка!
 Пример ввода: <code>/me полил(-а) цветы</code>''')
       return
-   await message.delete()
-   await bot.send_message(message.chat.id, f'''<b>{message.from_user.full_name}</b> {args}.''')
+   if command.args:
+      await message.delete()
+      await bot.send_message(message.chat.id, f'''<b>{message.from_user.full_name}</b> {command.args}.''')
    
    
    
