@@ -59,7 +59,7 @@ async def rp_cmd(message: types.Message):
 16. !трахнуть (реплика)
 17. !убить (реплика)
 18. /do (реплика)
-19. /me (реплика)''')
+19. /me (реплика) - временно не работает''')
 
 @dp.message_handler(lambda message: message.text.casefold() == 'рп' or message.text.casefold() == 'rp')
 async def rp_cmd(message: types.Message):
@@ -81,7 +81,7 @@ async def rp_cmd(message: types.Message):
 16. !трахнуть (реплика)
 17. !убить (реплика)
 18. /do (реплика)
-19. /me (реплика)''')
+19. /me (реплика) - временно не работает''')
 
 
     
