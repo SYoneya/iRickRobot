@@ -311,18 +311,19 @@ async def ban_cmd(message: types.Message):
       await message.reply(f'''Ошибка!
 Нельзя дать бан администратору.''')
 
-@dp.message_handler(commands=['размут', 'unmute'], commands_prefix='/!.', is_chat_admin=True)
+@dp.message_handler(commands=['размут', 'unmute'], commands_prefix='/!.')
 async def unmute_cmd(message: types.Message):
-   if not message.reply_to_message:
-      await message.reply(f'''Ошибка!
-Нужно в ответ на сообщение.''')
-      return
-   try:
-      await bot.restrict_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_send_messages=True, can_send_media_messages=True, can_send_other_messages=True, can_add_web_page_previews=True)
-      await bot.send_message(message.chat.id, f'''✅ <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> больше не в муте.''')
-   except aiogram.utils.exceptions.UserIsAnAdministratorOfTheChat:
-      await message.reply(f'''Ошибка!
-Нельзя дать размут администратору.''')
+    try:
+        member = await bot.get_chat_member(message.chat.id, message.from_id)
+        if member.status not in {"administrator", "creator"}:
+            await message.reply(f'''Ты не можешь дать размут, так как не имеешь прав администратора.''')
+            return
+        await bot.restrict_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_send_messages=True, can_send_media_messages=True, can_send_other_messages=True, can_add_web_page_previews=True)
+        await bot.send_message(message.chat.id, f'''✅ <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> больше не в муте.''')
+    except aiogram.utils.exceptions.ChatAdminRequired:
+        await message.reply(f'''Ты не можешь дать размут администратору.''')
+    except aiogram.utils.exceptions.CantRestrictChatOwner:
+        await message.reply(f'''Ты не можешь дать размут основателю.''')
 
 @dp.message_handler(commands=['разбан', 'unban'], commands_prefix='/!.', is_chat_admin=True)
 async def unban_cmd(message: types.Message):
