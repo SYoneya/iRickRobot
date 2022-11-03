@@ -1,10 +1,14 @@
 import aiogram, logging; from aiogram import Bot, Dispatcher, types, executor; from datetime import datetime, timedelta;
-from config import TOKEN, on_startup;
+from config import TOKEN;
 
 logging.basicConfig(level=logging.INFO)
 
 bot = Bot(token=TOKEN, parse_mode='HTML')
 dp = Dispatcher(bot)
+
+async def on_startup(_):
+    print('Bot was started!')
+    await bot.send_message(-1001591876770, f'''Бот обновлён и запущен.''')
 
 
 
