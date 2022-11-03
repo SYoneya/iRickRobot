@@ -230,16 +230,16 @@ async def me_cmd(message: types.Message, command: Command):
       await message.reply(f'''Пример ввода: <code>!me полил(-а) цветы</code>''')
       return
    if command.args:
-      await message.delete()
       await bot.send_message(message.chat.id, f'''<b>{message.from_user.full_name}</b> {command.args}.''')
+      await message.delete()
 
 @dp.message_handler(commands=['do'], commands_prefix='!.')
 async def do_cmd(message: types.Message, command: Command):
    if not command.args:
       await message.reply(f'''Пример ввода: <code>!do Цветы политы</code>''')
       return
-   await message.delete()
    await bot.send_message(message.chat.id, f'''{command.args}. (<b>{message.from_user.full_name}</b>)''')
+   await message.delete()
    
    
 
