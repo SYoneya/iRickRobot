@@ -324,7 +324,7 @@ async def unmute_cmd(message: types.Message):
         if member.status not in {"administrator", "creator"}:
             await message.reply(f'''Ты не можешь дать размут, так как не имеешь прав администратора.''')
             return
-        if not message.reply_to_message:
+        elif not message.reply_to_message:
             await message.reply(f'''Нужно в ответ на сообщение.''')
             return
         await bot.restrict_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_send_messages=True, can_send_media_messages=True, can_send_other_messages=True, can_add_web_page_previews=True)
@@ -341,7 +341,7 @@ async def unban_cmd(message: types.Message):
         if member.status not in {"administrator", "creator"}:
             await message.reply(f'''Ты не можешь дать разбан, так как не имеешь прав администратора.''')
             return
-        if not message.reply_to_message:
+        elif not message.reply_to_message:
             await message.reply(f'''Нужно в ответ на сообщение.''')
             return
         await bot.unban_chat_member(message.chat.id, message.reply_to_message.from_user.id)
