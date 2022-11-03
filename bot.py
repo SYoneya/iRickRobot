@@ -286,14 +286,14 @@ async def mute_cmd(message: types.Message):
 @dp.message_handler(commands=['бан', 'ban'], commands_prefix='/!.')
 async def ban_cmd(message: types.Message):
     try:
-        member = await bot.get_chat_member(message.chat.id, message.from_user.id)
+        member = await bot.get_chat_member(message.chat.id, message.from_id)
         if member.status in {'member'}:
             await message.reply(f'''Ты не можешь дать бан, так как не имеешь прав администратора.''')
             return
         elif not message.reply_to_message:
             await message.reply(f'''Нужно в ответ на сообщение.''')
             return
-        elif member.status in {'administrator', 'creator'}:
+        elif member.status not in {'member'}:
             await message.reply(f'''Ты не можешь дать бан администратору.''')
             return
         ban_time = int(message.text.split()[1])
