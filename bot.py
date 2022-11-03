@@ -283,39 +283,41 @@ async def mute_cmd(message: types.Message):
     except aiogram.utils.exceptions.CantRestrictChatOwner:
         await message.reply(f'''Ты не можешь дать мут основателю.''')
 
-@dp.message_handler(commands=['бан', 'ban'], commands_prefix='/!.', is_chat_admin=True)
+@dp.message_handler(commands=['бан', 'ban'], commands_prefix='/!.')
 async def ban_cmd(message: types.Message):
-   if not message.reply_to_message:
-      await message.reply(f'''Ошибка!
-Нужно в ответ на сообщение.''')
-      return
-   try:
-      ban_time = int(message.text.split()[1])
-      ban_type = message.text.split()[2]
-      ban_reason = ' '.join(message.text.split()[3:])
-   except IndexError:
-      await message.reply(f'''Ошибка!
-Пример ввода: <code>/ban 10 минут</code>''')
-      return
-   try:
-      if ban_type == 'м' or ban_type == 'мин' or ban_type == 'минута' or ban_type == 'минуту' or ban_type == 'минуты' or ban_type == 'минут':
-         dnt = datetime.now() + timedelta(minutes=ban_time)
-         dntt = dnt.timestamp()
-         await bot.ban_chat_member(message.chat.id, message.reply_to_message.from_user.id, until_date = dntt)
-         await bot.send_message(message.chat.id, f'''🔴 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>, бан на {ban_time} {ban_type} по причине "{ban_reason}".''')
-      elif ban_type == 'ч' or ban_type == 'час' or ban_type == 'часа' or ban_type == 'часов':
-         dnt = datetime.now() + timedelta(hours=ban_time)
-         dntt = dnt.timestamp()
-         await bot.ban_chat_member(message.chat.id, message.reply_to_message.from_user.id, until_date = dntt)
-         await bot.send_message(message.chat.id, f'''🔴 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>, бан на {ban_time} {ban_type} по причине "{ban_reason}".''')
-      elif ban_type == 'д' or ban_type == 'день' or ban_type == 'дня' or ban_type == 'дней':
-         dnt = datetime.now() + timedelta(days=ban_time)
-         dntt = dnt.timestamp()
-         await bot.ban_chat_member(message.chat.id, message.reply_to_message.from_user.id, until_date = dntt)
-         await bot.send_message(message.chat.id, f'''🔴 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>, бан на {ban_time} {ban_type} по причине "{ban_reason}".''')
-   except aiogram.utils.exceptions.UserIsAnAdministratorOfTheChat:
-      await message.reply(f'''Ошибка!
-Нельзя дать бан администратору.''')
+    try:
+        member = await bot.get_chat_member(message.chat.id, message.from_user.id)
+        if member.status in {'member'}:
+            await message.reply(f'''Ты не можешь дать бан, так как не имеешь прав администратора.''')
+            return
+        elif not message.reply_to_message:
+            await message.reply(f'''Нужно в ответ на сообщение.''')
+            return
+        elif member.status not in {'member'}:
+            await message.reply(f'''Ты не можешь дать бан администратору.''')
+            return
+        ban_time = int(message.text.split()[1])
+        ban_type = message.text.split()[2]
+        ban_reason = ' '.join(message.text.split()[3:])
+    except IndexError:
+        await message.reply(f'''Пример ввода: <code>/ban 4 часа спам</code>''')
+    except ValueError:
+        await message.reply(f'''Пример ввода: <code>/ban 4 часа спам</code>''')
+        if ban_type == 'минута' or ban_type == 'минуту' or ban_type == 'минуты' or ban_type == 'минут':
+            dnt = datetime.now() + timedelta(minutes=ban_time)
+            dntt = dnt.timestamp()
+            await bot.ban_chat_member(message.chat.id, message.reply_to_message.from_user.id, until_date = dntt)
+            await bot.send_message(message.chat.id, f'''🔴 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>, бан на {ban_time} {ban_type} по причине "{ban_reason}".''')
+        elif ban_type == 'час' or ban_type == 'часа' or ban_type == 'часов':
+            dnt = datetime.now() + timedelta(hours=ban_time)
+            dntt = dnt.timestamp()
+            await bot.ban_chat_member(message.chat.id, message.reply_to_message.from_user.id, until_date = dntt)
+            await bot.send_message(message.chat.id, f'''🔴 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>, бан на {ban_time} {ban_type} по причине "{ban_reason}".''')
+        elif ban_type == 'день' or ban_type == 'дня' or ban_type == 'дней':
+            dnt = datetime.now() + timedelta(days=ban_time)
+            dntt = dnt.timestamp()
+            await bot.ban_chat_member(message.chat.id, message.reply_to_message.from_user.id, until_date = dntt)
+            await bot.send_message(message.chat.id, f'''🔴 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>, бан на {ban_time} {ban_type} по причине "{ban_reason}".''')
 
 @dp.message_handler(commands=['размут', 'unmute'], commands_prefix='/!.')
 async def unmute_cmd(message: types.Message):
