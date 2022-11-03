@@ -1,6 +1,5 @@
-import aiogram, logging; from datetime import datetime, timedelta;
-from aiogram import Bot, Dispatcher, types, executor;
-from config import *
+import aiogram, logging; from aiogram import Bot, Dispatcher, types, executor; from datetime import datetime, timedelta;
+from config import TOKEN, on_startup;
 
 logging.basicConfig(level=logging.INFO)
 
