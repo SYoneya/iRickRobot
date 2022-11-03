@@ -294,7 +294,7 @@ async def ban_cmd(message: types.Message):
             await message.reply(f'''Нужно в ответ на сообщение.''')
             return
         admin = await bot.get_chat_member(message.chat.id, message.reply_to_message.from_user.id)
-        elif admin.status not in {'member'}:
+        if admin.status not in {'member'}:
             await message.reply(f'''Ты не можешь дать бан администратору.''')
             return
         ban_time = int(message.text.split()[1])
