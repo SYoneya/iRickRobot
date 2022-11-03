@@ -297,7 +297,7 @@ async def ban_cmd(message: types.Message):
         if message.reply_to_message.from_user.id:
             await message.reply("Нельзя себя")
             return
-        elif admin.status not in {'member'}:
+        if admin.status not in {'member'}:
             await message.reply(f'''Ты не можешь дать бан администратору.''')
             return
         ban_time = int(message.text.split()[1])
