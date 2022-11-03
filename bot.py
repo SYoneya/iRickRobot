@@ -327,18 +327,22 @@ async def unmute_cmd(message: types.Message):
     except aiogram.utils.exceptions.CantRestrictChatOwner:
         await message.reply(f'''Ты не можешь дать размут основателю.''')
 
-@dp.message_handler(commands=['разбан', 'unban'], commands_prefix='/!.', is_chat_admin=True)
+@dp.message_handler(commands=['разбан', 'unban'], commands_prefix='/!.')
 async def unban_cmd(message: types.Message):
-   if not message.reply_to_message:
-      await message.reply(f'''Ошибка!
-Нужно в ответ на сообщение.''')
-      return
-   try:
-      await bot.unban_chat_member(message.chat.id, message.reply_to_message.from_user.id)
-      await bot.send_message(message.chat.id, f'''✅ <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> больше не в бане.''')
-   except aiogram.utils.exceptions.UserIsAnAdministratorOfTheChat:
-      await message.reply(f'''Ошибка!
-Нельзя дать разбан администратору.''')
+    try:
+        member = await bot.get_chat_member(message.chat.id, message.from_id)
+        if member.status not in {"administrator", "creator"}:
+            await message.reply(f'''Ты не можешь дать разбан, так как не имеешь прав администратора.''')
+            return
+        if not message.reply_to_message:
+            await message.reply(f'''Нужно в ответ на сообщение.''')
+            return
+        await bot.unban_chat_member(message.chat.id, message.reply_to_message.from_user.id)
+        await bot.send_message(message.chat.id, f'''✅ <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> больше не в бане.''')
+    except aiogram.utils.exceptions.UserIsAnAdministratorOfTheChat:
+        await message.reply(f'''Ты не можешь дать разбан администратору.''')
+    except aiogram.utils.exceptions.CantRestrictChatOwner:
+        await message.reply(f'''Ты не можешь дать разбан основателю.''')
 
 @dp.message_handler(commands=['админы', 'кто админ', 'admins'], commands_prefix='/!.')
 async def admins_cmd(message: types.Message):
