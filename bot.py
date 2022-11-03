@@ -1,4 +1,4 @@
-import aiogram, logging; from aiogram import Bot, Dispatcher, types, executor; from datetime import datetime, timedelta;
+import aiogram, logging; from aiogram import Bot, Dispatcher, types, executor; from aiogram.dispatcher.filters import Command; from datetime import datetime, timedelta;
 from config import TOKEN;
 
 logging.basicConfig(level=logging.INFO)
@@ -61,8 +61,8 @@ async def rp_cmd(message: types.Message):
 15. !сжечь (реплика)
 16. !трахнуть (реплика)
 17. !убить (реплика)
-18. /do (реплика)
-19. /me (реплика) - временно не работает''')
+18. !do (реплика)
+19. !me (реплика)''')
 
 @dp.message_handler(lambda message: message.text.casefold() == 'рп' or message.text.casefold() == 'rp')
 async def rp_cmd(message: types.Message):
@@ -83,8 +83,8 @@ async def rp_cmd(message: types.Message):
 15. !сжечь (реплика)
 16. !трахнуть (реплика)
 17. !убить (реплика)
-18. /do (реплика)
-19. /me (реплика) - временно не работает''')
+18. !do (реплика)
+19. !me (реплика)''')
 
 
     
@@ -224,28 +224,25 @@ async def убить(message: types.Message):
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''🤡🔪 | {message.from_user.get_mention(as_html=True)} убил(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['do'], commands_prefix='/!.')
-async def do_cmd(message: types.Message):
-   args = message.get_args()
-   if not args:
-      await message.reply(f'''Ошибка!
-Пример ввода: <code>/do Цветы политы</code>''')
-      return
-   await message.delete()
-   await bot.send_message(message.chat.id, f'''{args}. (<b>{message.from_user.full_name}</b>)''')
-"""
-@dp.message_handler(commands=['me'], commands_prefix='/!.')
-async def me_cmd(message: types.Message, command: CommandObject):
+@dp.message_handler(commands=['me'], commands_prefix='!.')
+async def me_cmd(message: types.Message, command: Command):
    if not command.args:
-      await message.reply(f'''Ошибка!
-Пример ввода: <code>/me полил(-а) цветы</code>''')
+      await message.reply(f'''Пример ввода: <code>!me полил(-а) цветы</code>''')
       return
    if command.args:
       await message.delete()
       await bot.send_message(message.chat.id, f'''<b>{message.from_user.full_name}</b> {command.args}.''')
-"""  
+
+@dp.message_handler(commands=['do'], commands_prefix='!.')
+async def do_cmd(message: types.Message, command: Command):
+   if not command.args:
+      await message.reply(f'''Пример ввода: <code>!do Цветы политы</code>''')
+      return
+   await message.delete()
+   await bot.send_message(message.chat.id, f'''{command.args}. (<b>{message.from_user.full_name}</b>)''')
    
    
+
 @dp.message_handler(commands=['мут', 'mute'], commands_prefix='/!.', is_chat_admin=True)
 async def mute_cmd(message: types.Message):
    if not message.reply_to_message:
