@@ -353,8 +353,6 @@ async def unban_cmd(message: types.Message):
     await bot.unban_chat_member(message.chat.id, message.reply_to_message.from_user.id)
     await bot.send_message(message.chat.id, f'''✅ <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> больше не в бане.''')
 
-    
-    
 @dp.message_handler(commands=['админы', 'кто админ', 'admins'], commands_prefix='/!.')
 async def admins_cmd(message: types.Message):
    try:
@@ -365,17 +363,36 @@ async def admins_cmd(message: types.Message):
       await message.reply('\n\n'.join(lst))
    except aiogram.utils.exceptions.BadRequest:
       await message.reply(f'''Нужно использовать в чате.''')
+        
+        
+        
+@dp.message_handler(commands=['пин', 'pin'], commands_prefix='/!.')
+async def pin_cmd(message: types.Message):
+    member = await bot.get_chat_member(message.chat.id, message.from_user.id)
+    if member.status in {'member'}:
+        await message.reply(f'''Ты не можешь закрепить, так как не имеешь прав администратора.''')
+        return
+    elif not message.reply_to_message:
+        await message.reply(f'''Нужно в ответ на сообщение.''')
+        return
+    await bot.pin_chat_message(message.chat.id, message.reply_to_message.message_id)
+    await message.reply(f'''📌 Сообщение закреплено.''')
 
-@dp.message_handler(lambda message: message.text.casefold() == 'админы' or message.text.casefold() == 'кто админ' or message.text.casefold() == 'admins')
-async def admins_cmd(message: types.Message):
-   try:
-      chat_admins = await bot.get_chat_administrators(message.chat.id)
-      lst = [f'''"id": "{admin.user.id}",
-"full_name": "{admin.user.full_name}",
-"username": "{admin.user.username}"''' for admin in chat_admins]
-      await message.reply('\n\n'.join(lst))
-   except aiogram.utils.exceptions.BadRequest:
-      await message.reply(f'''Нужно использовать в чате.''')
+@dp.message_handler(commands=['разпин', 'unpin'], commands_prefix='/!.')
+async def unpin_cmd(message: types.Message, command: Command):
+    member = await bot.get_chat_member(message.chat.id, message.from_user.id)
+    if member.status in {'member'}:
+        await message.reply(f'''Ты не можешь открепить, так как не имеешь прав администратора.''')
+        return
+    elif command.args == 'ВСЕ' or command.args == 'ВСе' or command.args == 'Все' or command.args == 'все' or command.args == 'всЕ' or command.args == 'вСЕ' or command.args == 'вСе':
+        await bot.unpin_all_chat_messages(message.chat.id)
+        await message.reply(f'''📌 Все сообщения откреплены.''')
+        return
+    elif not message.reply_to_message:
+        await message.reply(f'''Нужно в ответ на сообщение.''')
+        return
+    await bot.unpin_chat_message(message.chat.id, message.reply_to_message.message_id)
+    await message.reply(f'''📌 Сообщение откреплено.''')
 
 
 
@@ -387,6 +404,10 @@ async def new_chat_members(message: types.Message):
 @dp.message_handler(content_types=['left_chat_member'])
 async def left_chat_member(message: types.Message):
     await bot.send_message(message.chat.id, f'''{message.left_chat_member.full_name} покинул(-а) чат.''')
+    await message.delete()
+    
+@dp.message_handler(content_types=['new_chat_title', 'new_chat_photo', 'delete_chat_photo', 'message_auto_delete_timer_changed', 'pinned_message', 'video_chat_scheduled', 'video_chat_started', 'video_chat_ended'])
+async def other_types(message: types.Message):
     await message.delete()
 
 
