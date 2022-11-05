@@ -88,143 +88,151 @@ async def rp_cmd(message: types.Message):
 
 
     
-@dp.message_handler(commands=['выебать'], commands_prefix='!.')
+@dp.message_handler(commands=['выебать'], commands_prefix='/!.')
 async def выебать(message: types.Message):
    if not message.reply_to_message:
-      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''👉👌😬 | {message.from_user.get_mention(as_html=True)} выебал(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['дать'], commands_prefix='!.')
+@dp.message_handler(commands=['дать'], commands_prefix='/!.')
 async def дать(message: types.Message):
    if not message.reply_to_message:
-      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''🙏🏻 | {message.from_user.get_mention(as_html=True)} дал(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['испугать'], commands_prefix='!.')
+@dp.message_handler(commands=['испугать'], commands_prefix='/!.')
 async def испугать(message: types.Message):
    if not message.reply_to_message:
-      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''😱 | {message.from_user.get_mention(as_html=True)} испугал(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['кастрировать'], commands_prefix='!.')
+@dp.message_handler(commands=['кастрировать'], commands_prefix='/!.')
 async def кастрировать(message: types.Message):
    if not message.reply_to_message:
-      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''✂️ | {message.from_user.get_mention(as_html=True)} кастрировал(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['лизнуть'], commands_prefix='!.')
+@dp.message_handler(commands=['лизнуть'], commands_prefix='/!.')
 async def лизнуть(message: types.Message):
    if not message.reply_to_message:
-      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''👅 | {message.from_user.get_mention(as_html=True)} лизнул(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['обнять'], commands_prefix='!.')
+@dp.message_handler(commands=['обнять'], commands_prefix='/!.')
 async def обнять(message: types.Message):
    if not message.reply_to_message:
-      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''🤗 | {message.from_user.get_mention(as_html=True)} обнял(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['отдаться'], commands_prefix='!.')
+@dp.message_handler(commands=['отдаться'], commands_prefix='/!.')
 async def отдаться(message: types.Message):
    if not message.reply_to_message:
-      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''💝 | {message.from_user.get_mention(as_html=True)} отдался(-ась) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['отлизать'], commands_prefix='!.')
+@dp.message_handler(commands=['отлизать'], commands_prefix='/!.')
 async def отлизать(message: types.Message):
    if not message.reply_to_message:
-      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''👅 | {message.from_user.get_mention(as_html=True)} отлизал(-а) у <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['отравить'], commands_prefix='!.')
+@dp.message_handler(commands=['отравить'], commands_prefix='/!.')
 async def отравить(message: types.Message):
    if not message.reply_to_message:
-      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''💊 | {message.from_user.get_mention(as_html=True)} отравил(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['отсосать'], commands_prefix='!.')
+@dp.message_handler(commands=['отсосать'], commands_prefix='/!.')
 async def отсосать(message: types.Message):
    if not message.reply_to_message:
-      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''🥳 | {message.from_user.get_mention(as_html=True)} отсосал(-а) у <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['покормить'], commands_prefix='!.')
+@dp.message_handler(commands=['покормить'], commands_prefix='/!.')
 async def покормить(message: types.Message):
    if not message.reply_to_message:
-      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''🍕 | {message.from_user.get_mention(as_html=True)} покормил(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['послать'], commands_prefix='!.')
+@dp.message_handler(commands=['послать'], commands_prefix='/!.')
 async def послать(message: types.Message):
    if not message.reply_to_message:
-      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''🖕 | {message.from_user.get_mention(as_html=True)} послал(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['поцеловать'], commands_prefix='!.')
+@dp.message_handler(commands=['поцеловать'], commands_prefix='/!.')
 async def поцеловать(message: types.Message):
    if not message.reply_to_message:
-      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''😘 | {message.from_user.get_mention(as_html=True)} поцеловал(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['прижать'], commands_prefix='!.')
+@dp.message_handler(commands=['прижать'], commands_prefix='/!.')
 async def прижать(message: types.Message):
    if not message.reply_to_message:
-      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''🤲 | {message.from_user.get_mention(as_html=True)} прижал(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['сжечь'], commands_prefix='!.')
+@dp.message_handler(commands=['сжечь'], commands_prefix='/!.')
 async def сжечь(message: types.Message):
    if not message.reply_to_message:
-      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''🔥 | {message.from_user.get_mention(as_html=True)} сжёг(-ожгла) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['трахнуть'], commands_prefix='!.')
+@dp.message_handler(commands=['трахнуть'], commands_prefix='/!.')
 async def трахнуть(message: types.Message):
    if not message.reply_to_message:
-      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''👉👌 | {message.from_user.get_mention(as_html=True)} трахнул(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['убить'], commands_prefix='!.')
+@dp.message_handler(commands=['убить'], commands_prefix='/!.')
 async def убить(message: types.Message):
    if not message.reply_to_message:
-      await message.reply('Ошибка! Нужно в ответ на сообщение.')
+      await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    args = ' '.join(message.text.split()[1:])
    await bot.send_message(message.chat.id, f'''🤡🔪 | {message.from_user.get_mention(as_html=True)} убил(-а) <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {args}''')
 
-@dp.message_handler(commands=['me'], commands_prefix='!.')
+@dp.message_handler(commands=['do'], commands_prefix='/!.')
+async def do_cmd(message: types.Message, command: Command):
+   if not command.args:
+      await message.reply(f'''Пример ввода: <code>!do Цветы политы</code>''')
+      return
+   await bot.send_message(message.chat.id, f'''{command.args}. (<b>{message.from_user.full_name}</b>)''')
+   await message.delete()
+
+@dp.message_handler(commands=['me'], commands_prefix='/!.')
 async def me_cmd(message: types.Message, command: Command):
    if not command.args:
       await message.reply(f'''Пример ввода: <code>!me полил(-а) цветы</code>''')
@@ -233,16 +241,8 @@ async def me_cmd(message: types.Message, command: Command):
       await bot.send_message(message.chat.id, f'''<b>{message.from_user.full_name}</b> {command.args}.''')
       await message.delete()
 
-@dp.message_handler(commands=['do'], commands_prefix='!.')
-async def do_cmd(message: types.Message, command: Command):
-   if not command.args:
-      await message.reply(f'''Пример ввода: <code>!do Цветы политы</code>''')
-      return
-   await bot.send_message(message.chat.id, f'''{command.args}. (<b>{message.from_user.full_name}</b>)''')
-   await message.delete()
+
    
-    
-    
 @dp.message_handler(commands=['мут', 'mute'], commands_prefix='/!.')
 async def mute_cmd(message: types.Message):
     try:
@@ -353,43 +353,41 @@ async def unban_cmd(message: types.Message):
     await bot.unban_chat_member(message.chat.id, message.reply_to_message.from_user.id)
     await bot.send_message(message.chat.id, f'''✅ <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> больше не в бане.''')
 
+    
+    
 @dp.message_handler(commands=['админы', 'кто админ', 'admins'], commands_prefix='/!.')
 async def admins_cmd(message: types.Message):
    try:
       chat_admins = await bot.get_chat_administrators(message.chat.id)
       lst = [f'''"id": "{admin.user.id}",
-"first_name": "{admin.user.first_name}",
-"last_name": "{admin.user.last_name}",
+"full_name": "{admin.user.full_name}",
 "username": "{admin.user.username}"''' for admin in chat_admins]
       await message.reply('\n\n'.join(lst))
    except aiogram.utils.exceptions.BadRequest:
-      await message.reply(f'''Ошибка!
-Нужно использовать в чате.''')
+      await message.reply(f'''Нужно использовать в чате.''')
 
 @dp.message_handler(lambda message: message.text.casefold() == 'админы' or message.text.casefold() == 'кто админ' or message.text.casefold() == 'admins')
 async def admins_cmd(message: types.Message):
    try:
       chat_admins = await bot.get_chat_administrators(message.chat.id)
       lst = [f'''"id": "{admin.user.id}",
-"first_name": "{admin.user.first_name}",
-"last_name": "{admin.user.last_name}",
+"full_name": "{admin.user.full_name}",
 "username": "{admin.user.username}"''' for admin in chat_admins]
       await message.reply('\n\n'.join(lst))
    except aiogram.utils.exceptions.BadRequest:
-      await message.reply(f'''Ошибка!
-Нужно использовать в чате.''')
+      await message.reply(f'''Нужно использовать в чате.''')
 
 
 
 @dp.message_handler(content_types=['new_chat_members'])
-async def ncm(message: types.Message):
-   await message.delete()
-   await bot.send_message(message.chat.id, f'''{message.new_chat_members[0].full_name} вступил(-а) в чат.''')
+async def new_chat_members(message: types.Message):
+    await bot.send_message(message.chat.id, f'''{message.new_chat_members[0].full_name} вступил(-а) в чат.''')
+    await message.delete()
 
 @dp.message_handler(content_types=['left_chat_member'])
-async def lcm(message: types.Message):
-   await message.delete()
-   await bot.send_message(message.chat.id, f'''{message.left_chat_member.full_name} покинул(-а) чат.''')
+async def left_chat_member(message: types.Message):
+    await bot.send_message(message.chat.id, f'''{message.left_chat_member.full_name} покинул(-а) чат.''')
+    await message.delete()
 
 
 
