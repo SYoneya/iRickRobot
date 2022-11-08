@@ -247,14 +247,14 @@ async def me_cmd(message: types.Message, command: Command):
 async def mute_cmd(message: types.Message):
     try:
         member = await bot.get_chat_member(message.chat.id, message.from_id)
-        if member.status in {'member'}:
+        if member.status not in {'administrator', 'creator'}:
             await message.reply(f'''Ты не можешь дать мут, так как не имеешь прав администратора.''')
             return
         elif not message.reply_to_message:
             await message.reply(f'''Нужно в ответ на сообщение.''')
             return
         admin = await bot.get_chat_member(message.chat.id, message.reply_to_message.from_user.id)
-        if admin.status not in {'member'}:
+        if admin.status in {'administrator', 'creator'}:
             await message.reply(f'''Ты не можешь дать мут администратору.''')
             return
         mute_time = int(message.text.split()[1])
@@ -286,14 +286,14 @@ async def mute_cmd(message: types.Message):
 async def ban_cmd(message: types.Message):
     try:
         member = await bot.get_chat_member(message.chat.id, message.from_id)
-        if member.status in {'member'}:
+        if member.status not in {'administrator', 'creator'}:
             await message.reply(f'''Ты не можешь дать бан, так как не имеешь прав администратора.''')
             return
         elif not message.reply_to_message:
             await message.reply(f'''Нужно в ответ на сообщение.''')
             return
         admin = await bot.get_chat_member(message.chat.id, message.reply_to_message.from_user.id)
-        if admin.status not in {'member'}:
+        if admin.status in {'administrator', 'creator'}:
             await message.reply(f'''Ты не можешь дать бан администратору.''')
             return
         ban_time = int(message.text.split()[1])
@@ -324,14 +324,14 @@ async def ban_cmd(message: types.Message):
 @dp.message_handler(commands=['размут', 'unmute'], commands_prefix='/!.')
 async def unmute_cmd(message: types.Message):
     member = await bot.get_chat_member(message.chat.id, message.from_user.id)
-    if member.status in {'member'}:
+    if member.status not in {'administrator', 'creator'}:
         await message.reply(f'''Ты не можешь дать размут, так как не имеешь прав администратора.''')
         return
     elif not message.reply_to_message:
         await message.reply(f'''Нужно в ответ на сообщение.''')
         return
     admin = await bot.get_chat_member(message.chat.id, message.reply_to_message.from_user.id)
-    if admin.status in {'administrator', 'owner'}:
+    if admin.status in {'administrator', 'creator'}:
         await message.reply(f'''Ты не можешь дать размут администратору.''')
         return
     await bot.restrict_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_send_messages=True, can_send_media_messages=True, can_send_other_messages=True, can_add_web_page_previews=True)
@@ -340,14 +340,14 @@ async def unmute_cmd(message: types.Message):
 @dp.message_handler(commands=['разбан', 'unban'], commands_prefix='/!.')
 async def unban_cmd(message: types.Message):
     member = await bot.get_chat_member(message.chat.id, message.from_user.id)
-    if member.status in {'member'}:
+    if member.status not in {'administrator', 'creator'}:
         await message.reply(f'''Ты не можешь дать разбан, так как не имеешь прав администратора.''')
         return
     elif not message.reply_to_message:
         await message.reply(f'''Нужно в ответ на сообщение.''')
         return
     admin = await bot.get_chat_member(message.chat.id, message.reply_to_message.from_user.id)
-    if admin.status in {'administrator', 'owner'}:
+    if admin.status in {'administrator', 'creator'}:
         await message.reply(f'''Ты не можешь дать разбан администратору.''')
         return
     await bot.unban_chat_member(message.chat.id, message.reply_to_message.from_user.id)
