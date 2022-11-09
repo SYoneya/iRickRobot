@@ -12,7 +12,7 @@ async def on_startup(_):
 
 
 
-@dp.message_handler(commands=['start'], commands_prefix='/!.')
+@dp.message_handler(commands=['start'], commands_prefix='/')
 async def start_cmd(message: types.Message):
     await message.reply(f'''Привет!
 Я Рик - чат-менеджер.
@@ -331,8 +331,6 @@ async def admins_cmd(message: types.Message):
    except aiogram.utils.exceptions.BadRequest:
       await message.reply(f'''Нужно использовать в чате.''')
         
-        
-        
 @dp.message_handler(commands=['пин', 'pin'], commands_prefix='/!.')
 async def pin_cmd(message: types.Message):
     member = await bot.get_chat_member(message.chat.id, message.from_user.id)
@@ -368,24 +366,19 @@ async def new_chat_members(message: types.Message):
     await bot.send_message(message.chat.id, f'''{message.new_chat_members[0].full_name} вступил(-а) в чат.''')
     await message.delete()
 
-@dp.message_handler(content_types=['left_chat_member'])
-async def left_chat_member(message: types.Message):
-    await bot.send_message(message.chat.id, f'''{message.left_chat_member.full_name} покинул(-а) чат.''')
-    await message.delete()
-    
-@dp.message_handler(content_types=['new_chat_title', 'new_chat_photo', 'delete_chat_photo', 'message_auto_delete_timer_changed', 'pinned_message', 'video_chat_scheduled', 'video_chat_started', 'video_chat_ended'])
-async def other_types(message: types.Message):
-    await message.delete()
+@dp.message_handler(content_types=['pinned_message'])
+async def pinned_message(message: types.Message):
+   await message.delete()
 
 
 
-@dp.message_handler(lambda message: message.text.casefold() == 'рик' or message.text.casefold() == 'rick' or message.text.casefold() == 'бот' or message.text.casefold() == 'bot')
+@dp.message_handler(lambda message: message.text.casefold() == 'рик' or message.text.casefold() == 'бот')
 async def ping_cmd(message: types.Message):
    await message.reply('✅ На месте!')
 
 @dp.message_handler(lambda message: message.text.casefold() == 'рикролл')
 async def rickroll(message: types.Message):
-   await bot.copy_message(message.chat.id, -1001882577870, 2, message.reply_to_message.from_id)
+   await bot.copy_message(message.chat.id, -1001882577870, 2)
 
 
 
