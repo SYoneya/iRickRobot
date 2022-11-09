@@ -27,20 +27,7 @@ async def help_cmd(message: types.Message):
 /ban (цифра) (м/ч/д) (причина) - бан
 /unmute - размут
 /unban - разбан
-/admins - список админов
-/ping - пинг''')
-
-@dp.message_handler(lambda message: message.text.casefold() == 'помощь' or message.text.casefold() == 'help')
-async def help_cmd(message: types.Message):
-   await message.reply(f'''/start - приветствие
-/help - помощь
-/rp - список РП
-/mute (цифра) (м/ч/д) (причина) - мут
-/ban (цифра) (м/ч/д) (причина) - бан
-/unmute - размут
-/unban - разбан
-/admins - список админов
-/ping - пинг''')
+/admins - список админов''')
 
 @dp.message_handler(commands=['рп', 'rp'], commands_prefix='/!.')
 async def rp_cmd(message: types.Message):
@@ -64,30 +51,8 @@ async def rp_cmd(message: types.Message):
 18. !do (реплика)
 19. !me (реплика)''')
 
-@dp.message_handler(lambda message: message.text.casefold() == 'рп' or message.text.casefold() == 'rp')
-async def rp_cmd(message: types.Message):
-    await message.reply(f'''1. !выебать (реплика)
-2. !дать (реплика)
-3. !испугать (реплика)
-4. !кастрировать (реплика)
-5. !лизнуть (реплика)
-6. !обнять (реплика)
-7. !отдаться (реплика)
-8. !отлизать (реплика)
-9. !отравить (реплика)
-10. !отсосать (реплика)
-11. !покормить (реплика)
-12. !послать (реплика)
-13. !поцеловать (реплика)
-14. !прижать (реплика)
-15. !сжечь (реплика)
-16. !трахнуть (реплика)
-17. !убить (реплика)
-18. !do (реплика)
-19. !me (реплика)''')
 
-
-    
+ 
 @dp.message_handler(commands=['выебать'], commands_prefix='/!.')
 async def выебать(message: types.Message):
    if not message.reply_to_message:
