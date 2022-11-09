@@ -23,10 +23,12 @@ async def help_cmd(message: types.Message):
    await message.reply(f'''/start - приветствие
 /help - помощь
 /rp - список РП
-/mute (цифра) (м/ч/д) (причина) - мут
-/ban (цифра) (м/ч/д) (причина) - бан
+/mute (цифра) (минут/часов/дней) (причина) - мут
+/ban (цифра) (минут/часов/дней) (причина) - бан
 /unmute - размут
 /unban - разбан
+/pin - закрепить
+/unpin - открепить (/unpin все - открепить все)
 /admins - список админов''')
 
 @dp.message_handler(commands=['рп', 'rp'], commands_prefix='/!.')
@@ -377,21 +379,13 @@ async def other_types(message: types.Message):
 
 
 
-@dp.message_handler(commands=['рик', 'rick', 'бот', 'bot'], commands_prefix='/!.')
-async def ping_cmd(message: types.Message):
-   await message.reply('✅ На месте!')
-
 @dp.message_handler(lambda message: message.text.casefold() == 'рик' or message.text.casefold() == 'rick' or message.text.casefold() == 'бот' or message.text.casefold() == 'bot')
 async def ping_cmd(message: types.Message):
    await message.reply('✅ На месте!')
 
-@dp.message_handler(commands=['пинг', 'ping'], commands_prefix='/!.')
-async def ping_cmd(message: types.Message):
-   await message.reply('ПОНГ')
-
-@dp.message_handler(lambda message: message.text.casefold() == 'пинг' or message.text.casefold() == 'ping')
-async def ping_cmd(message: types.Message):
-   await message.reply('ПОНГ')
+@dp.message_handler(lambda message: message.text.casefold() == 'рикролл')
+async def rickroll(message: types.Message):
+   await bot.forward_message(message.chat.id, -1001882577870, 2)
 
 
 
