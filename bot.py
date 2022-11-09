@@ -385,7 +385,7 @@ async def ping_cmd(message: types.Message):
 
 @dp.message_handler(lambda message: message.text.casefold() == 'рикролл')
 async def rickroll(message: types.Message):
-   await bot.forward_message(message.chat.id, message.reply_to_message, -1001882577870, 2)
+   await bot.forward_message(message.chat.id, -1001882577870, 2, forward_sender_name=False)
 
 
 
