@@ -376,9 +376,15 @@ async def pinned_message(message: types.Message):
 async def ping_cmd(message: types.Message):
    await message.reply('✅ На месте!')
 
+
+
 @dp.message_handler(lambda message: message.text.casefold() == 'рикролл')
 async def rickroll(message: types.Message):
    await bot.copy_message(message.chat.id, -1001882577870, 2, reply_to_message_id=message.message_id)
+
+@dp.message_handler(lambda message: message.text.casefold() == 'мем')
+async def mem(message: types.Message):
+   await bot.copy_message(message.chat.id, -1001882577870, 4, reply_to_message_id=message.message_id)
 
 
 
