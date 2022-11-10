@@ -237,17 +237,17 @@ async def mute_cmd(message: types.Message):
         dnt = datetime.now() + timedelta(minutes=mute_time)
         dntt = dnt.timestamp()
         await bot.restrict_chat_member(message.chat.id, message.reply_to_message.from_user.id, types.ChatPermissions(False), until_date = dntt)
-        await bot.send_message(message.chat.id, f'''🔇 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>, мут на {mute_time} {mute_type} по причине "{mute_reason}".''', reply_to_message_id=message.message_id)
+        await bot.send_message(message.chat.id, f'''🔇 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> получил(-а) мут на {mute_time} {mute_type} по причине "{mute_reason}".''', reply_to_message_id=message.message_id)
     elif mute_type == 'час' or mute_type == 'часа' or mute_type == 'часов':
         dnt = datetime.now() + timedelta(hours=mute_time)
         dntt = dnt.timestamp()
         await bot.restrict_chat_member(message.chat.id, message.reply_to_message.from_user.id, types.ChatPermissions(False), until_date = dntt)
-        await bot.send_message(message.chat.id, f'''🔇 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>, мут на {mute_time} {mute_type} по причине "{mute_reason}".''', reply_to_message_id=message.message_id)
+        await bot.send_message(message.chat.id, f'''🔇 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> получил(-а) мут на {mute_time} {mute_type} по причине "{mute_reason}".''', reply_to_message_id=message.message_id)
     elif mute_type == 'день' or mute_type == 'дня' or mute_type == 'дней':
         dnt = datetime.now() + timedelta(days=mute_time)
         dntt = dnt.timestamp()
         await bot.restrict_chat_member(message.chat.id, message.reply_to_message.from_user.id, types.ChatPermissions(False), until_date = dntt)
-        await bot.send_message(message.chat.id, f'''🔇 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>, мут на {mute_time} {mute_type} по причине "{mute_reason}".''', reply_to_message_id=message.message_id)
+        await bot.send_message(message.chat.id, f'''🔇 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> получил(-а) мут на {mute_time} {mute_type} по причине "{mute_reason}".''', reply_to_message_id=message.message_id)
 
 @dp.message_handler(commands=['бан', 'ban'], commands_prefix='/!.')
 async def ban_cmd(message: types.Message):
@@ -276,17 +276,19 @@ async def ban_cmd(message: types.Message):
         dnt = datetime.now() + timedelta(minutes=ban_time)
         dntt = dnt.timestamp()
         await bot.ban_chat_member(message.chat.id, message.reply_to_message.from_user.id, until_date = dntt)
-        await bot.send_message(message.chat.id, f'''🔴 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>, бан на {ban_time} {ban_type} по причине "{ban_reason}".''', reply_to_message_id=message.message_id)
+        await bot.send_message(message.chat.id, f'''🔴 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> получил(-а) бан на {ban_time} {ban_type} по причине "{ban_reason}".''', reply_to_message_id=message.message_id)
     elif ban_type == 'час' or ban_type == 'часа' or ban_type == 'часов':
         dnt = datetime.now() + timedelta(hours=ban_time)
         dntt = dnt.timestamp()
         await bot.ban_chat_member(message.chat.id, message.reply_to_message.from_user.id, until_date = dntt)
-        await bot.send_message(message.chat.id, f'''🔴 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>, бан на {ban_time} {ban_type} по причине "{ban_reason}".''', reply_to_message_id=message.message_id)
+        await bot.send_message(message.chat.id, f'''🔴 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> получил(-а) бан на {ban_time} {ban_type} по причине "{ban_reason}".''', reply_to_message_id=message.message_id)
     elif ban_type == 'день' or ban_type == 'дня' or ban_type == 'дней':
         dnt = datetime.now() + timedelta(days=ban_time)
         dntt = dnt.timestamp()
         await bot.ban_chat_member(message.chat.id, message.reply_to_message.from_user.id, until_date = dntt)
-        await bot.send_message(message.chat.id, f'''🔴 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>, бан на {ban_time} {ban_type} по причине "{ban_reason}".''', reply_to_message_id=message.message_id)
+        await bot.send_message(message.chat.id, f'''🔴 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>получил(-а) бан на {ban_time} {ban_type} по причине "{ban_reason}".''', reply_to_message_id=message.message_id)
+
+
 
 @dp.message_handler(commands=['размут', 'unmute'], commands_prefix='/!.')
 async def unmute_cmd(message: types.Message):
@@ -301,7 +303,7 @@ async def unmute_cmd(message: types.Message):
     if admin.status in {'administrator', 'creator'}:
         await message.reply(f'''Ты не можешь дать размут администратору.''')
         return
-    await bot.restrict_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_send_messages=True, can_send_media_messages=True, can_send_other_messages=True, can_add_web_page_previews=True)
+    await bot.restrict_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_send_messages=True, can_send_other_messages=True)
     await bot.send_message(message.chat.id, f'''🔊 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> больше не в муте.''', reply_to_message_id=message.message_id)
 
 @dp.message_handler(commands=['разбан', 'unban'], commands_prefix='/!.')
@@ -320,6 +322,8 @@ async def unban_cmd(message: types.Message):
     await bot.unban_chat_member(message.chat.id, message.reply_to_message.from_user.id)
     await bot.send_message(message.chat.id, f'''✅ <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> больше не в бане.''', reply_to_message_id=message.message_id)
 
+
+
 @dp.message_handler(commands=['админы', 'кто админ', 'admins'], commands_prefix='/!.')
 async def admins_cmd(message: types.Message):
    try:
@@ -331,10 +335,12 @@ async def admins_cmd(message: types.Message):
    except aiogram.utils.exceptions.BadRequest:
       await message.reply(f'''Нужно использовать в чате.''')
         
+
+
 @dp.message_handler(commands=['пин', 'pin'], commands_prefix='/!.')
 async def pin_cmd(message: types.Message):
     member = await bot.get_chat_member(message.chat.id, message.from_user.id)
-    if member.status in {'member'}:
+    if member.status not in {'administrator', 'creator'}:
         await message.reply(f'''Ты не можешь закрепить, так как не имеешь прав администратора.''')
         return
     elif not message.reply_to_message:
@@ -346,7 +352,7 @@ async def pin_cmd(message: types.Message):
 @dp.message_handler(commands=['разпин', 'unpin'], commands_prefix='/!.')
 async def unpin_cmd(message: types.Message, command: Command):
     member = await bot.get_chat_member(message.chat.id, message.from_user.id)
-    if member.status in {'member'}:
+    if member.status not in {'administrator', 'creator'}:
         await message.reply(f'''Ты не можешь открепить, так как не имеешь прав администратора.''')
         return
     elif command.args == 'ВСЕ' or command.args == 'ВСе' or command.args == 'Все' or command.args == 'все' or command.args == 'всЕ' or command.args == 'вСЕ' or command.args == 'вСе':
