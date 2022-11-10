@@ -292,35 +292,35 @@ async def ban_cmd(message: types.Message):
 
 @dp.message_handler(commands=['размут', 'unmute'], commands_prefix='/!.')
 async def unmute_cmd(message: types.Message):
-    member = await bot.get_chat_member(message.chat.id, message.from_user.id)
-    if member.status not in {'administrator', 'creator'}:
-        await message.reply(f'''Ты не можешь дать размут, так как не имеешь прав администратора.''')
-        return
-    elif not message.reply_to_message:
-        await message.reply(f'''Нужно в ответ на сообщение.''')
-        return
-    admin = await bot.get_chat_member(message.chat.id, message.reply_to_message.from_user.id)
-    if admin.status in {'administrator', 'creator'}:
-        await message.reply(f'''Ты не можешь дать размут администратору.''')
-        return
-    await bot.restrict_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_send_messages=True, can_send_other_messages=True)
-    await bot.send_message(message.chat.id, f'''🔊 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> больше не в муте.''', reply_to_message_id=message.message_id)
+   member = await bot.get_chat_member(message.chat.id, message.from_user.id)
+   if member.status not in {'administrator', 'creator'}:
+      await message.reply(f'''Ты не можешь дать размут, так как не имеешь прав администратора.''')
+      return
+   elif not message.reply_to_message:
+      await message.reply(f'''Нужно в ответ на сообщение.''')
+      return
+   admin = await bot.get_chat_member(message.chat.id, message.reply_to_message.from_user.id)
+   if admin.status in {'administrator', 'creator'}:
+      await message.reply(f'''Ты не можешь дать размут администратору.''')
+      return
+   await bot.restrict_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_send_messages=True, can_send_other_messages=True)
+   await bot.send_message(message.chat.id, f'''🔊 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> больше не в муте.''', reply_to_message_id=message.message_id)
 
 @dp.message_handler(commands=['разбан', 'unban'], commands_prefix='/!.')
 async def unban_cmd(message: types.Message):
-    member = await bot.get_chat_member(message.chat.id, message.from_user.id)
-    if member.status not in {'administrator', 'creator'}:
-        await message.reply(f'''Ты не можешь дать разбан, так как не имеешь прав администратора.''')
-        return
-    elif not message.reply_to_message:
-        await message.reply(f'''Нужно в ответ на сообщение.''')
-        return
-    admin = await bot.get_chat_member(message.chat.id, message.reply_to_message.from_user.id)
-    if admin.status in {'administrator', 'creator'}:
-        await message.reply(f'''Ты не можешь дать разбан администратору.''')
-        return
-    await bot.unban_chat_member(message.chat.id, message.reply_to_message.from_user.id)
-    await bot.send_message(message.chat.id, f'''✅ <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> больше не в бане.''', reply_to_message_id=message.message_id)
+   member = await bot.get_chat_member(message.chat.id, message.from_user.id)
+   if member.status not in {'administrator', 'creator'}:
+      await message.reply(f'''Ты не можешь дать разбан, так как не имеешь прав администратора.''')
+      return
+   elif not message.reply_to_message:
+      await message.reply(f'''Нужно в ответ на сообщение.''')
+      return
+   admin = await bot.get_chat_member(message.chat.id, message.reply_to_message.from_user.id)
+   if admin.status in {'administrator', 'creator'}:
+      await message.reply(f'''Ты не можешь дать разбан администратору.''')
+      return
+   await bot.unban_chat_member(message.chat.id, message.reply_to_message.from_user.id)
+   await bot.send_message(message.chat.id, f'''✅ <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> больше не в бане.''', reply_to_message_id=message.message_id)
 
 
 
@@ -339,31 +339,57 @@ async def admins_cmd(message: types.Message):
 
 @dp.message_handler(commands=['пин', 'pin'], commands_prefix='/!.')
 async def pin_cmd(message: types.Message):
-    member = await bot.get_chat_member(message.chat.id, message.from_user.id)
-    if member.status not in {'administrator', 'creator'}:
-        await message.reply(f'''Ты не можешь закрепить, так как не имеешь прав администратора.''')
-        return
-    elif not message.reply_to_message:
-        await message.reply(f'''Нужно в ответ на сообщение.''')
-        return
-    await bot.pin_chat_message(message.chat.id, message.reply_to_message.message_id)
-    await message.reply(f'''📌 Сообщение закреплено.''')
+   member = await bot.get_chat_member(message.chat.id, message.from_user.id)
+   if member.status not in {'administrator', 'creator'}:
+      await message.reply(f'''Ты не можешь закрепить, так как не имеешь прав администратора.''')
+      return
+   elif not message.reply_to_message:
+      await message.reply(f'''Нужно в ответ на сообщение.''')
+      return
+   await bot.pin_chat_message(message.chat.id, message.reply_to_message.message_id)
+   await message.reply(f'''📌 Сообщение закреплено.''')
 
 @dp.message_handler(commands=['разпин', 'unpin'], commands_prefix='/!.')
 async def unpin_cmd(message: types.Message, command: Command):
-    member = await bot.get_chat_member(message.chat.id, message.from_user.id)
-    if member.status not in {'administrator', 'creator'}:
-        await message.reply(f'''Ты не можешь открепить, так как не имеешь прав администратора.''')
-        return
-    elif command.args == 'ВСЕ' or command.args == 'ВСе' or command.args == 'Все' or command.args == 'все' or command.args == 'всЕ' or command.args == 'вСЕ' or command.args == 'вСе':
-        await bot.unpin_all_chat_messages(message.chat.id)
-        await message.reply(f'''📌 Все сообщения откреплены.''')
-        return
-    elif not message.reply_to_message:
-        await message.reply(f'''Нужно в ответ на сообщение.''')
-        return
-    await bot.unpin_chat_message(message.chat.id, message.reply_to_message.message_id)
-    await message.reply(f'''📌 Сообщение откреплено.''')
+   member = await bot.get_chat_member(message.chat.id, message.from_user.id)
+   if member.status not in {'administrator', 'creator'}:
+      await message.reply(f'''Ты не можешь открепить, так как не имеешь прав администратора.''')
+      return
+   elif command.args == 'ВСЕ' or command.args == 'ВСе' or command.args == 'Все' or command.args == 'все' or command.args == 'всЕ' or command.args == 'вСЕ' or command.args == 'вСе':
+      await bot.unpin_all_chat_messages(message.chat.id)
+      await message.reply(f'''📌 Все сообщения откреплены.''')
+      return
+   elif not message.reply_to_message:
+      await message.reply(f'''Нужно в ответ на сообщение.''')
+      return
+   await bot.unpin_chat_message(message.chat.id, message.reply_to_message.message_id)
+   await message.reply(f'''📌 Сообщение откреплено.''')
+
+
+
+@dp.message_handler(commands=['повысить', 'promote'])
+async def promote_cmd(message: types.Message, command: Command):
+   member = await bot.get_chat_member(message.chat.id, message.from_user.id)
+   if member.status not in {'administrator', 'creator'}:
+      await message.reply(f'''Ты не можешь повысить, так как не имеешь прав администратора.''')
+      return
+   elif not message.reply_to_message:
+      await message.reply(f'''Нужно в ответ на сообщение.''')
+      return
+   elif command.args == '+1':
+      await bot.promote_chat_member(message.chat.id, message.reply_to_message.message_id, can_manage_chat=True)
+   
+@dp.message_handler(commands=['понизить', 'demote'])
+async def demote_cmd(message: types.Message, command: Command):
+   member = await bot.get_chat_member(message.chat.id, message.from_user.id)
+   if member.status not in {'administrator', 'creator'}:
+      await message.reply(f'''Ты не можешь понизить, так как не имеешь прав администратора.''')
+      return
+   elif not message.reply_to_message:
+      await message.reply(f'''Нужно в ответ на сообщение.''')
+      return
+   elif command.args == '-1':
+      await bot.promote_chat_member(message.chat.id, message.reply_to_message.message_id, can_manage_chat=False)
 
 
 
@@ -378,19 +404,27 @@ async def pinned_message(message: types.Message):
 
 
 
-@dp.message_handler(lambda message: message.text.casefold() == 'рик' or message.text.casefold() == 'бот')
-async def ping_cmd(message: types.Message):
-   await message.reply('✅ На месте!')
-
-
-
 @dp.message_handler(lambda message: message.text.casefold() == 'рикролл')
 async def rickroll(message: types.Message):
-   await bot.copy_message(message.chat.id, -1001882577870, 2, reply_to_message_id=message.message_id)
+   await bot.copy_message(message.chat.id, -1001882577870, 2, protect_content=True, reply_to_message_id=message.message_id)
 
 @dp.message_handler(lambda message: message.text.casefold() == 'мем')
 async def mem(message: types.Message):
    await bot.copy_message(message.chat.id, -1001882577870, random.randint(4, 39), protect_content=True, reply_to_message_id=message.message_id)
+
+
+
+@dp.message_handler(lambda message: message.text.casefold() == 'рик' or message.text.casefold() == 'бот')
+async def ping_cmd(message: types.Message):
+   await message.reply('✅ На месте!')
+
+@dp.message_handler(lambda message: message.text.casefold() == 'пинг')
+async def ping_cmd(message: types.Message):
+   await message.reply('ПОНГ')
+
+@dp.message_handler(lambda message: message.text.casefold() == 'пиу')
+async def ping_cmd(message: types.Message):
+   await message.reply('ПАУ')
 
 
 
