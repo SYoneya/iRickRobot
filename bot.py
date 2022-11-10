@@ -377,7 +377,7 @@ async def promote_cmd(message: types.Message, command: Command):
       await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    elif command.args == '+1':
-      await bot.promote_chat_member(message.chat.id, message.reply_to_message.message_id, can_manage_chat=True)
+      await bot.promote_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_manage_chat=True)
    
 @dp.message_handler(commands=['понизить', 'demote'])
 async def demote_cmd(message: types.Message, command: Command):
@@ -389,7 +389,7 @@ async def demote_cmd(message: types.Message, command: Command):
       await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    elif command.args == '-1':
-      await bot.promote_chat_member(message.chat.id, message.reply_to_message.message_id, can_manage_chat=False)
+      await bot.promote_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_manage_chat=False)
 
 
 
