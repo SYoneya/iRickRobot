@@ -1,4 +1,4 @@
-import logging, random; from aiogram import types, executor; from main import bot, dp, on_startup; from rp_cmds import *; from adm_cmds import *;
+import logging, random; from aiogram import types, executor; from main import bot, dp, on_startup; from adm_cmds import *; from rp_cmds import *; from game_cmds import *; from content_types import *;
 
 logging.basicConfig(level=logging.INFO)
 
@@ -47,40 +47,5 @@ async def rp_cmd(message: types.Message):
 
 
 
-@dp.message_handler(content_types=['new_chat_members'])
-async def new_chat_members(message: types.Message):
-    await bot.send_message(message.chat.id, f'''{message.new_chat_members[0].full_name} вступил(-а) в чат.''')
-    await message.delete()
-
-@dp.message_handler(content_types=['pinned_message'])
-async def pinned_message(message: types.Message):
-   await message.delete()
-
-
-
-@dp.message_handler(lambda message: message.text.casefold() == 'рикролл')
-async def rickroll(message: types.Message):
-   await bot.copy_message(message.chat.id, -1001882577870, 2, protect_content=True, reply_to_message_id=message.message_id)
-
-@dp.message_handler(lambda message: message.text.casefold() == 'мем')
-async def mem(message: types.Message):
-   await bot.copy_message(message.chat.id, -1001882577870, random.randint(4, 39), protect_content=True, reply_to_message_id=message.message_id)
-
-
-
-@dp.message_handler(lambda message: message.text.casefold() == 'рик' or message.text.casefold() == 'бот')
-async def ping_cmd(message: types.Message):
-   await message.reply('✅ На месте!')
-
-@dp.message_handler(lambda message: message.text.casefold() == 'пинг')
-async def ping_cmd(message: types.Message):
-   await message.reply('ПОНГ')
-
-@dp.message_handler(lambda message: message.text.casefold() == 'пиу')
-async def ping_cmd(message: types.Message):
-   await message.reply('ПАУ')
-
-
-
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=False, on_startup=on_startup)
+   executor.start_polling(dp, skip_updates=False, on_startup=on_startup)
