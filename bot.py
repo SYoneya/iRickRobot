@@ -1,4 +1,4 @@
-import logging; from aiogram import types, executor; from main import bot, dp, on_startup; from .admin_tools import *;
+import logging; from aiogram import types, executor; from main import *; from admin_tools import *;
 
 logging.basicConfig(level=logging.INFO)
 
