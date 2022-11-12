@@ -355,7 +355,7 @@ async def unpin_cmd(message: types.Message, command: Command):
    if member.status not in {'administrator', 'creator'}:
       await message.reply(f'''Ты не можешь открепить, так как не имеешь прав администратора.''')
       return
-   elif command.args == 'ВСЕ' or command.args == 'ВСе' or command.args == 'Все' or command.args == 'все' or command.args == 'всЕ' or command.args == 'вСЕ' or command.args == 'вСе':
+   elif command.args.lower() == 'все':
       await bot.unpin_all_chat_messages(message.chat.id)
       await message.reply(f'''📌 Все сообщения откреплены.''')
       return
@@ -406,7 +406,7 @@ async def pinned_message(message: types.Message):
 
 @dp.message_handler(lambda message: message.text.casefold() == 'рикролл')
 async def rickroll(message: types.Message):
-   await bot.copy_message(message.chat.id, -1001882577870, 2, protect_content=True, reply_to_message_id=message.message_id)
+   await bot.copy_message(message.chat.id, -1001882577870, 2, protect_content=True, reply_to_message_id=message)
 
 @dp.message_handler(lambda message: message.text.casefold() == 'мем')
 async def mem(message: types.Message):
