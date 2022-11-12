@@ -1,5 +1,5 @@
 import aiogram, logging, random; from aiogram import types, executor; from aiogram.dispatcher.filters import Command; from datetime import datetime, timedelta;
-from main import bot, dp, on_startup;
+from main import bot, dp, on_startup; from rp import *;
 
 logging.basicConfig(level=logging.INFO)
 
