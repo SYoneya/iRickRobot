@@ -1,4 +1,4 @@
-import logging; from aiogram import types, executor; from main import bot, dp, on_startup; from adm_cmds import *; from rp_cmds import *; from game_cmds import *; from content_types import *;
+import logging; from aiogram import types, executor; from main import bot, dp, on_startup; from admin_tools import *; from games import *;
 
 logging.basicConfig(level=logging.INFO)
 
