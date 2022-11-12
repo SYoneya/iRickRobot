@@ -1,14 +1,7 @@
-import aiogram, logging, random; from aiogram import Bot, Dispatcher, types, executor; from aiogram.dispatcher.filters import Command; from datetime import datetime, timedelta;
-from config import TOKEN;
+import aiogram, logging, random; from aiogram import types, executor; from aiogram.dispatcher.filters import Command; from datetime import datetime, timedelta;
+from main import bot, dp, on_startup;
 
 logging.basicConfig(level=logging.INFO)
-
-bot = Bot(token=TOKEN, parse_mode='HTML')
-dp = Dispatcher(bot)
-
-async def on_startup(_):
-    print('Bot was started!')
-    await bot.send_message(-1001591876770, f'''Бот обновлён и запущен.''')
 
 
 
@@ -367,7 +360,7 @@ async def unpin_cmd(message: types.Message, command: Command):
 
 
 
-@dp.message_handler(commands=['повысить', 'promote'])
+@dp.message_handler(commands=['повысить', 'promote'], commands_prefix='/!.')
 async def promote_cmd(message: types.Message, command: Command):
    member = await bot.get_chat_member(message.chat.id, message.from_user.id)
    if member.status not in {'administrator', 'creator'}:
@@ -377,12 +370,12 @@ async def promote_cmd(message: types.Message, command: Command):
       await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    elif command.args.lower() == 'все':
-      await bot.promote_chat_member(message.chat.id, message.reply_to_message.message_id, can_manage_chat=True)
+      await bot.promote_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_manage_chat=True)
       return
    elif command.args.lower() == '+управление чатом':
-      await bot.promote_chat_member(message.chat.id, message.reply_to_message.message_id, can_manage_chat=True)
+      await bot.promote_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_manage_chat=True)
    
-@dp.message_handler(commands=['понизить', 'demote'])
+@dp.message_handler(commands=['понизить', 'demote'], commands_prefix='/!.')
 async def demote_cmd(message: types.Message, command: Command):
    member = await bot.get_chat_member(message.chat.id, message.from_user.id)
    if member.status not in {'administrator', 'creator'}:
@@ -392,10 +385,10 @@ async def demote_cmd(message: types.Message, command: Command):
       await message.reply(f'''Нужно в ответ на сообщение.''')
       return
    elif command.args.lower() == 'все':
-      await bot.promote_chat_member(message.chat.id, message.reply_to_message.message_id, can_manage_chat=False)
+      await bot.promote_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_manage_chat=False)
       return
    elif command.args.lower() == '-управление чатом':
-      await bot.promote_chat_member(message.chat.id, message.reply_to_message.message_id, can_manage_chat=False)
+      await bot.promote_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_manage_chat=False)
 
 
 
