@@ -6,4 +6,4 @@ dp = Dispatcher(bot)
 
 
 async def on_startup(_):
-    await bot.send_message(-1001591876770, f'''Сервер: перезапущен. Бот: запущен. К использованию: готов...''')
+    await bot.send_message(-1001591876770, f'''Бот обновлен и запущен!''')
