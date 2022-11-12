@@ -376,8 +376,11 @@ async def promote_cmd(message: types.Message, command: Command):
    elif not message.reply_to_message:
       await message.reply(f'''Нужно в ответ на сообщение.''')
       return
-   elif command.args == '+1':
-      await bot.promote_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_manage_chat=True)
+   elif command.args.lower() == 'все':
+      await bot.promote_chat_member(message.chat.id, message.reply_to_message.message_id, can_manage_chat=True)
+      return
+   elif command.args.lower() == '+управление чатом':
+      await bot.promote_chat_member(message.chat.id, message.reply_to_message.message_id, can_manage_chat=True)
    
 @dp.message_handler(commands=['понизить', 'demote'])
 async def demote_cmd(message: types.Message, command: Command):
@@ -388,8 +391,11 @@ async def demote_cmd(message: types.Message, command: Command):
    elif not message.reply_to_message:
       await message.reply(f'''Нужно в ответ на сообщение.''')
       return
-   elif command.args == '-1':
-      await bot.promote_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_manage_chat=False)
+   elif command.args.lower() == 'все':
+      await bot.promote_chat_member(message.chat.id, message.reply_to_message.message_id, can_manage_chat=False)
+      return
+   elif command.args.lower() == '-управление чатом':
+      await bot.promote_chat_member(message.chat.id, message.reply_to_message.message_id, can_manage_chat=False)
 
 
 
@@ -406,7 +412,7 @@ async def pinned_message(message: types.Message):
 
 @dp.message_handler(lambda message: message.text.casefold() == 'рикролл')
 async def rickroll(message: types.Message):
-   await bot.copy_message(message.chat.id, -1001882577870, 2, protect_content=True, reply_to_message_id=message)
+   await bot.copy_message(message.chat.id, -1001882577870, 2, protect_content=True, reply_to_message_id=message.message_id)
 
 @dp.message_handler(lambda message: message.text.casefold() == 'мем')
 async def mem(message: types.Message):
