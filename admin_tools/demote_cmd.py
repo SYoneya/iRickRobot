@@ -13,6 +13,7 @@ async def demote_cmd(message: types.Message, command: Command):
       return
    elif command.args.lower() == '-все':
       await bot.promote_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_manage_chat=False)
+      await message.reply(f'''-все права''')
       return
    elif command.args.lower() == '-управление чатом':
       await bot.promote_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_manage_chat=False)

@@ -11,7 +11,7 @@ async def promote_cmd(message: types.Message, command: Command):
    elif not message.reply_to_message:
       await message.reply(f'''Нужно в ответ на сообщение.''')
       return
-   elif command.args.lower() == 'все':
+   elif command.args.lower() == '+все':
       await bot.promote_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_manage_chat=True, can_change_info=True, can_delete_messages=True, can_restrict_members=True, can_invite_users=True, can_pin_messages=True, can_manage_video_chats=True, can_promote_members=True)
       await message.reply(f'''+ все права''')
       return
