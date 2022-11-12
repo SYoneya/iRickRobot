@@ -11,7 +11,7 @@ async def demote_cmd(message: types.Message, command: Command):
    elif not message.reply_to_message:
       await message.reply(f'''Нужно в ответ на сообщение.''')
       return
-   elif command.args.lower() == 'все':
+   elif command.args.lower() == '-все':
       await bot.promote_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_manage_chat=False)
       return
    elif command.args.lower() == '-управление чатом':
