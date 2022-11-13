@@ -16,7 +16,7 @@ async def unpin_cmd(message: types.Message, command: Command):
       elif not message.reply_to_message:
          await message.reply(f'''Нужно в ответ на сообщение.''')
          return
-      elif not command.args.lower():
+      else:
          await bot.unpin_chat_message(message.chat.id, message.reply_to_message.message_id)
          await message.reply(f'''📌 Сообщение откреплено.''')
          return
