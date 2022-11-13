@@ -1,4 +1,4 @@
-import aiogram; from aiogram import types; from datetime import datetime, timedelta; from main import bot, dp;
+"""from imports import *;
 
 
 
@@ -43,4 +43,4 @@ async def mute_cmd(message: types.Message):
             await bot.send_message(message.chat.id, f'''🔇 <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> получил(-а) мут на {mute_time} {mute_type} по причине "{mute_reason}".''', reply_to_message_id=message.message_id)
     except aiogram.utils.exceptions.BadRequest:
         await message.reply(f'''Не получится дать мут, т.к. я не имею соответствующие права.''')
-        return
+        return"""

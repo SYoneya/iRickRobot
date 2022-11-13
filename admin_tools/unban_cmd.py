@@ -1,4 +1,4 @@
-import aiogram; from aiogram import types; from main import bot, dp;
+from imports import *;
 
 
 
