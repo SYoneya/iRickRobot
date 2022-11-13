@@ -1,4 +1,4 @@
-from aiogram import types; from aiogram.dispatcher.filters import Command; from main import bot, dp;
+"""from aiogram import types; from aiogram.dispatcher.filters import Command; from main import bot, dp;
 
 
 
@@ -16,4 +16,4 @@ async def demote_cmd(message: types.Message, command: Command):
       await message.reply(f'''-все права''')
       return
    elif command.args.lower() == '-управление чатом':
-      await bot.promote_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_manage_chat=False)
+      await bot.promote_chat_member(message.chat.id, message.reply_to_message.from_user.id, can_manage_chat=False)"""
