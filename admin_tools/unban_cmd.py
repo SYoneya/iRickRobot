@@ -17,7 +17,7 @@ async def unban_cmd(message: types.Message):
          await message.reply(f'''Не получится дать разбан администратору.''')
          return
       await bot.unban_chat_member(message.chat.id, message.reply_to_message.from_user.id)
-      await bot.send_message(message.chat.id, f'''✅ <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> больше не в бане.''', reply_to_message_id=message.message_id)
+      await message.reply(f'''✅ <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> больше не в бане.''')
    except aiogram.utils.exceptions.BadRequest:
       await message.reply(f'''Не получится дать разбан, т.к. я не имею соответствующие права.''')
       return
