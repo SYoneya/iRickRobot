@@ -12,12 +12,11 @@ async def unpin_cmd(message: types.Message, command: Command):
       elif not command.args.lower():
          await bot.unpin_chat_message(message.chat.id, message.reply_to_message.message_id)
          await message.reply(f'''📌 Сообщение откреплено.''')
-         return
       elif command.args.lower() == 'все':
          await bot.unpin_all_chat_messages(message.chat.id)
          await message.reply(f'''📌 Все сообщения откреплены.''')
          return
-      if not message.reply_to_message:
+      elif not message.reply_to_message:
          await message.reply(f'''Нужно в ответ на сообщение.''')
          return
    except aiogram.utils.exceptions.BadRequest:
