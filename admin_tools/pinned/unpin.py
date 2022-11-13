@@ -9,7 +9,7 @@ async def unpin_cmd(message: types.Message, command: Command):
       if member.status not in {'administrator', 'creator'}:
          await message.reply(f'''Не получится открепить, т.к. ты не имеешь соответсвующие права.''')
          return
-      elif command.args.casefold() == 'все':
+      elif command.args.lower() == 'все':
          await bot.unpin_all_chat_messages(message.chat.id)
          await message.reply(f'''📌 Все сообщения откреплены.''')
          return
