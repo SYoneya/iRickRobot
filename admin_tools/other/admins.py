@@ -1,4 +1,4 @@
-"""import aiogram; from aiogram import types; from main import bot, dp;
+from imports import *;
 
 
 
@@ -11,4 +11,4 @@ async def admins_cmd(message: types.Message):
 "username": "{admin.user.username}"''' for admin in chat_admins]
       await message.reply('\n\n'.join(lst))
    except aiogram.utils.exceptions.BadRequest:
-      await message.reply(f'''Нужно использовать в чате.''')"""
+      await message.reply(f'''Нужно использовать в чате.''')
