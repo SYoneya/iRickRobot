@@ -1,4 +1,4 @@
-import aiogram; from aiogram import types; from aiogram.dispatcher.filters import Command; from main import bot, dp;
+from imports import *;
 
 
 
@@ -17,7 +17,7 @@ async def unpin_cmd(message: types.Message, command: Command):
          await bot.unpin_all_chat_messages(message.chat.id)
          await message.reply(f'''📌 Все сообщения откреплены.''')
          return
-      elif not message.reply_to_message:
+      if not message.reply_to_message:
          await message.reply(f'''Нужно в ответ на сообщение.''')
          return
    except aiogram.utils.exceptions.BadRequest:
