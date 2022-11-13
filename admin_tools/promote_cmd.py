@@ -7,14 +7,14 @@ async def promote_cmd(message: types.Message, command: Command):
    try:
       member = await bot.get_chat_member(message.chat.id, message.from_user.id)
       if member.status not in {'administrator', 'creator'}:
-         await message.reply(f'''Ты не можешь дать повышение, так как не имеешь прав администратора.''')
+         await message.reply(f'''Не получится дать повышение, т.к. ты не имеешь соответствующие права.''')
          return
       elif not message.reply_to_message:
          await message.reply(f'''Нужно в ответ на сообщение.''')
          return
       admin = await bot.get_chat_member(message.chat.id, message.reply_to_message.from_user.id)
       if admin.status in {'administrator', 'creator'}:
-         await message.reply(f'''Ты не можешь дать повышение администратору.''')
+         await message.reply(f'''Не получится дать повышение администратору.''')
          return
       elif command.args == '0':
          await bot.promote_chat_member(message.chat.id, message.reply_to_message.from_user.id, is_anonymous=True)
@@ -75,4 +75,4 @@ async def promote_cmd(message: types.Message, command: Command):
 ✅ анонимность''')
          return
    except aiogram.utils.exceptions.BadRequest:
-      await message.reply(f'''Я не могу повысить, так как у меня не хватает нужных прав.''')
+      await message.reply(f'''Не получится дать повышение, т.к. я не имею соответствующие права.''')
