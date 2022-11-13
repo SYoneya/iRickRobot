@@ -1,5 +1,5 @@
 import aiogram, logging, random, asyncio;
-from aiogram import Bot, dispatcher, types, executor;
+from aiogram import Bot, Dispatcher, types, executor;
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup;
 from aiogram.dispatcher.filters import Command;
 from datetime import datetime, timedelta;
