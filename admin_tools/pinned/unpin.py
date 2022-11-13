@@ -16,9 +16,10 @@ async def unpin_cmd(message: types.Message, command: Command):
       elif not message.reply_to_message:
          await message.reply(f'''Нужно в ответ на сообщение.''')
          return
-      else:
+      elif not command.args:
          await bot.unpin_chat_message(message.chat.id, message.reply_to_message.message_id)
          await message.reply(f'''📌 Сообщение откреплено.''')
+         return
    except aiogram.utils.exceptions.BadRequest:
       await message.reply(f'''Не получится открепить, т.к. я не имею соответствующие права.''')
       return
