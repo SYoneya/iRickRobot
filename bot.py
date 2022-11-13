@@ -1,6 +1,4 @@
-import logging; from aiogram import types, executor; from main import bot, dp, on_startup; from admin_tools.admins_cmd import *; from admin_tools.ban_cmd import *; from admin_tools.demote_cmd import *; from admin_tools.mute_cmd import *; from admin_tools.pin_cmd import *; from admin_tools.promote_cmd import *; from admin_tools.unban_cmd import *; from admin_tools.unmute_cmd import *; from admin_tools.unpin_cmd import *; from games.mem_cmd import *; from games.ping_cmds import *; from games.rickroll_cmd import *; from games.rp_cmds import *; from content_types.new_chat_members import *; from content_types.pinned_message import *;
-
-logging.basicConfig(level=logging.INFO)
+from imports import *;
 
 
 
