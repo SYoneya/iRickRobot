@@ -1,4 +1,4 @@
-from imports import *;
+"""from imports import *;
 
 
 
@@ -21,4 +21,4 @@ async def unpin_cmd(message: types.Message, command: Command):
          return
    except aiogram.utils.exceptions.BadRequest:
       await message.reply(f'''Не получится открепить, т.к. я не имею соответствующие права.''')
-      return
+      return"""
