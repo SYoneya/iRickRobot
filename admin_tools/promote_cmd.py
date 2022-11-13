@@ -76,3 +76,4 @@ async def promote_cmd(message: types.Message, command: Command):
          return
    except aiogram.utils.exceptions.BadRequest:
       await message.reply(f'''Не получится дать повышение, т.к. я не имею соответствующие права.''')
+      return
