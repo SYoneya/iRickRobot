@@ -14,6 +14,6 @@ from admin_tools.promoted.promote import *; from admin_tools.promoted.demote imp
 
 from games.memes import *; from games.rp import *;
 
-from content_types.new_chat_members import *; from content_types.pinned_message import *;
+from content_types.new_chat_members import *; from content_types.left_chat_member import *; from content_types.pinned_message import *;
 
 from markups.help import *;
